@@ -9,7 +9,16 @@ async function init() {
 
     // GraphQL Server
     const gqlServer = new ApolloServer({
-        typeDefs: ``,      // Schema
+        typeDefs: `
+            type Query {
+                hello : String
+                say(name: String): String
+            }
+        
+            type Mutation {
+                createUser: (fistName: String!, lastName: String!, email: String!, password: String!): Boolean
+            }
+        `,      // Schema
         resolvers: {},    // actual Function/ Buisness Logic
     });
 
