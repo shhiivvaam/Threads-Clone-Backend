@@ -1,0 +1,18 @@
+// connecting the docker container to the host machine
+
+docker compose up -d    // this will run the container in the background
+
+// using the postgres container
+
+-> su postgres      // connecting with the postgres user
+-> psql             // connecting with the postgres database
+-> \l               // list all the databases
+-> \q               // quit the database
+-> \c database_name      // to connnect with some particular database, but we can only connect with the database which is created by user and are listed when we have run the  { \l } command
+-> \d              // list all the tables in the database : it show the relations and tables present in the database
+-> \d <table_name>        // to check the info about the table_name in the database
+-> \x             // to see the table of a database in a more readable format
+
+// to sync the database changes to the postgres using the Prisma
+
+-> npx prisma migrate dev --name create_users_table    // this will create the migration file and will sync the changes to the database

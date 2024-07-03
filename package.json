@@ -1,7 +1,7 @@
 {
   "name": "threads-clone-backend",
   "version": "1.0.0",
-  "description": "��#\u0000 \u0000T\u0000h\u0000r\u0000e\u0000a\u0000d\u0000s\u0000-\u0000C\u0000l\u0000o\u0000n\u0000e\u0000-\u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000",
+  "description": "Thread Clone Backend",
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
@@ -22,7 +22,7 @@
   "dependencies": {
     "@apollo/server": "^4.10.4",
     "@prisma/client": "^5.16.1",
-  "express": "^4.19.2",
+    "express": "^4.19.2",
     "graphql": "^16.9.0"
   }
 }

@@ -13,26 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const server_1 = require("@apollo/server");
 const express4_1 = require("@apollo/server/express4");
+const graphql_1 = __importDefault(require("./graphql"));
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
         const PORT = Number(process.env.PORT) || 8000;
         app.use(express_1.default.json());
-        // GraphQL Server
-        const gqlServer = new server_1.ApolloServer({
-            typeDefs: ``, // Schema
-            resolvers: {}, // actual Function/ Buisness Logic
-        });
-        // Starting GQL Server
-        yield gqlServer.start();
         app.get('/', (req, res) => {
             res.json({
                 message: 'Server is up and Running'
             });
         });
-        app.use('/graphql', (0, express4_1.expressMiddleware)(gqlServer));
+        // const gqlServer = await createApolloGraphqlServer(); 
+        // app.use('/graphql', expressMiddleware(gqlServer));
+        app.use('/graphql', (0, express4_1.expressMiddleware)(yield (0, graphql_1.default)()));
         app.listen(PORT, () => {
             console.log(`Server started on PORT: ${PORT}`);
         });
