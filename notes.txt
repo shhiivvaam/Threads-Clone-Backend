@@ -16,3 +16,6 @@ docker compose up -d    // this will run the container in the background
 // to sync the database changes to the postgres using the Prisma
 
 -> npx prisma migrate dev --name create_users_table    // this will create the migration file and will sync the changes to the database
+
+// Things to Remember:
+    -> We cannot leave { Query -> Queries } empty
