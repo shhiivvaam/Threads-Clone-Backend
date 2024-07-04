@@ -46,6 +46,14 @@ class UserService {
         });
     }
 
+    public static getUserById(id: string) {
+        return prismaClient.user.findUnique({
+            where: {
+                id
+            }
+        });
+    }
+
     private static generateHash(salt: string, password: string) {
         const hashedPassword = createHmac("sha256", salt).update(password).digest("hex");
 
@@ -71,6 +79,10 @@ class UserService {
         }, JWT_SECRET);
 
         return token;
+    }
+
+    public static decodeJWTToken(token: string) {
+        return Jwt.verify(token, JWT_SECRET)
     }
 }
 
