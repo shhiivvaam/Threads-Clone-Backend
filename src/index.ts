@@ -4,7 +4,7 @@ import createApolloGraphqlServer from "./graphql";
 
 async function init() {
     const app = express();
-    const PORT = Number(process.env.PORT) || 8000;
+    const PORT = Number(process.env.PORT) || 4000;
     app.use(express.json());
     
     app.get('/', (req, res) => {

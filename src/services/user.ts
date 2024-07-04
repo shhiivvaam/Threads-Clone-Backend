@@ -3,6 +3,8 @@ import { prismaClient } from "../lib/db";
 // import { Jwt } from "jsonwebtoken";
 import Jwt from "jsonwebtoken";
 
+const JWT_SECRET = "SECRET_KEY";
+
 export interface CreateUserPayload {
     firstName: string;
     lastName?: string;
@@ -50,6 +52,7 @@ class UserService {
         return hashedPassword;
     }
 
+    // below function will be used for getting the token -> while logging in
     public static async getUserToken(payload: GetUserTokenPayload) {
         const { email, password } = payload;
 
@@ -62,6 +65,12 @@ class UserService {
         if (userHashedPassword !== user.password) throw new Error("incorrect password!");
 
         // Generate a Token   -> JWT(Json Web Token)
+        const token = Jwt.sign({
+            id: user.id,
+            email: user.email
+        }, JWT_SECRET);
+
+        return token;
     }
 }
 
